@@ -1,35 +1,14 @@
 ﻿# 生成带logo的二维码图片
 from os import getcwd,listdir,remove
 from openpyxl import load_workbook
-import qrcode
 import config
 from time import strftime,localtime,time
 from zipfile import ZipFile
-from PIL import Image,ImageDraw,ImageFont
-
-# 生成二维码
-def generate_qrcode(content,name=False):
-    img = qrcode.make(content)
-    img.convert("RGBA")
-    if not name: return img
-    (img_x,img_y)=img.size
-
-    # 设置字体及大小
-    font_size=int(img_y*0.07)
-    font = ImageFont.truetype("C:/windows/fonts/msyh.ttc", font_size)
-    (font_x,font_y)=font.getsize(name)
-
-    # 为图片建立背景
-    bg = Image.new('RGB', (img_x,img_y+20+font_y), color=(255,255,255))
-    bg.paste(img,(0,0))
-
-    draw = ImageDraw.Draw(bg)
-    draw.text((img_x/2-font_x/2,img_y-10), name,(0,0,0), font=font)
-    return bg
+from qrc import QRC
 
 # 生成二维码
 def zip_qrcode(str,uri=False,zip=False,file='png'):
-    img = generate_qrcode(str,uri)
+    img = QRC().getCode(str,uri)
     name=f'{uri}.{file}'
     img.save(name)
     if zip:
