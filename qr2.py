@@ -3,19 +3,7 @@ from os import getcwd,listdir,remove
 from openpyxl import load_workbook
 import config
 from time import strftime,localtime,time
-from zipfile import ZipFile
-from qrc import QRC
-
-# 生成二维码
-def zip_qrcode(str,uri=False,zip=False,file='png'):
-    img = QRC().getCode(str,uri)
-    name=f'{uri}.{file}'
-    img.save(name)
-    if zip:
-        with ZipFile(zip, 'a') as myzip:
-            myzip.write(name)
-            remove(name)
-        
+from qrc import QRC        
 
 # 根据配置生成文件名
 def generate_uri(row,s='',char='-'):
@@ -37,9 +25,10 @@ if __name__ == '__main__':
     wb = load_workbook(filename = f'{argv[1]}.xlsx')
     # 默认第一张表
     sheet_ranges = wb[wb.sheetnames[0]]
-    zip_name=f"{config.zip}-{strftime('%H%M%S',localtime(time()))}.zip"
+    qrc = QRC(zip_name=f"{config.zip}-{strftime('%H%M%S',localtime(time()))}")
     for row in sheet_ranges.rows:
-        zip_qrcode(generate_str(row),generate_uri(row),zip_name)
+        qrc.zipCode(generate_uri(row),content=generate_str(row))
+        # zip_qrcode(generate_str(row),generate_uri(row),zip_name)
     if len(argv)>2:
         print(argv[2],end='')
     print(zip_name)
