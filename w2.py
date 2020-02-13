@@ -20,14 +20,14 @@ def hello(path=''):
     if request.query_string:
         if '/' in path:
             # 链接
-            bg = qr.getCode(request.full_path[1:])
+            bg = qr(request.full_path[1:])
         elif path == '':
             # 空名
-            bg=qr.getCode(request.query_string)
+            bg=qr(request.query_string)
         else:
-            bg = qr.getCode(request.query_string,path)
+            bg = qr(request.query_string,path)
     else:
-        bg = qr.getCode(path)
+        bg = qr(path)
     return tmp_qrcode(bg)
 
 if __name__=='__main__':

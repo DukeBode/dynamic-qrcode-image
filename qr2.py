@@ -1,9 +1,8 @@
 ﻿# 生成带logo的二维码图片
-from os import getcwd,listdir,remove
 from openpyxl import load_workbook
-import config
 from time import strftime,localtime,time
 from qrc import QRC        
+import config
 
 # 根据配置生成文件名
 def generate_uri(row,s='',char='-'):
@@ -27,9 +26,7 @@ if __name__ == '__main__':
     sheet_ranges = wb[wb.sheetnames[0]]
     qrc = QRC(zip_name=f"{config.zip}-{strftime('%H%M%S',localtime(time()))}")
     for row in sheet_ranges.rows:
-        qrc.zipCode(generate_uri(row),content=generate_str(row))
+        qrc.zip(generate_uri(row),content=generate_str(row))
         # zip_qrcode(generate_str(row),generate_uri(row),zip_name)
     if len(argv)>2:
         print(argv[2],end='')
-    print(zip_name)
-
