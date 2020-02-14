@@ -27,6 +27,5 @@ if __name__ == '__main__':
     qrc = QRC(zip_name=f"{config.zip}-{strftime('%H%M%S',localtime(time()))}")
     for row in sheet_ranges.rows:
         qrc.zip(generate_uri(row),content=generate_str(row))
-        # zip_qrcode(generate_str(row),generate_uri(row),zip_name)
     if len(argv)>2:
         print(argv[2],end='')

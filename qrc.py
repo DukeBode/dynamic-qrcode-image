@@ -61,7 +61,6 @@ class QRC:
         return bg
     
     def __call__(self,content=False,font=False,icon=True):
-    # def getCode(self,content=False,font=False,icon=True):
         if content: self.content(content)
         elif self.__code is None: self.content('')
         if self.__icon and icon: self.setIcon()
