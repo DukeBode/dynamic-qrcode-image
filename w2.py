@@ -9,6 +9,7 @@ from wtforms.validators import DataRequired
 
 class MyForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
+
 #################################
 app = Flask(__name__)
 # 保存至内存，返回 response
@@ -24,10 +25,11 @@ def index():
     if request.method=='POST':
         pass
     form = MyForm(csrf_enabled=False)
-    if form.validate_on_submit():
-        return redirect('/success')
+    # if form.validate_on_submit():
+        # return redirect('/success')
     return render_template('submit.html', form=form)
     return request.headers.get('User-Agent')
+
 # @app.route('/')
 @app.route('/<path:path>')
 def hello(path=''):

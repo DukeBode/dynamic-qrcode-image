@@ -2,11 +2,12 @@
 from qrcode import QRCode,constants
 # https://pillow.readthedocs.io/
 from PIL import Image,ImageDraw,ImageFont
+from pyzbar.pyzbar import decode,ZBarSymbol
 from zipfile import ZipFile
 from io import BytesIO
 
 class QRC:
-
+    
     def __init__(self,border=4,box_size=10,color=(255,255,255),font='msyh.ttc',
         font_size=1,icon=False,icon_size=0.4,zip_name='',file_type='png',
         error_correction=constants.ERROR_CORRECT_M):
@@ -24,6 +25,7 @@ class QRC:
         self.__file_type = file_type
         self.__font = ImageFont.truetype(font, int(font_size*self.border))
     
+    # 设置内容
     def content(self,content):
         self.qr.add_data(content)
         self.qr.make()
@@ -31,6 +33,7 @@ class QRC:
         self.__code = self.__code.convert("RGBA")
         self.__size = self.__code.size[0]
 
+    # 设置图标
     def setIcon(self):
         w,h = self.__icon.size
         # 获取比例调整大小
@@ -42,6 +45,7 @@ class QRC:
         icon = icon.convert('RGBA')
         self.__code.paste(icon,p,icon)
 
+    # 设置背景
     def background(self,size=0):
         length = self.__size + 2 * self.border
         bg_size = (length, length + size)
@@ -49,6 +53,7 @@ class QRC:
         bg.paste(self.__code, (self.border, self.border))
         return bg
 
+    # 设置文字
     def setFont(self,title):
         w, h = self.__font.getsize(title)
         bg = self.background(h)
@@ -60,6 +65,7 @@ class QRC:
         draw.text(p, title,(0,0,0), font=self.__font)
         return bg
     
+    # 生成二维码
     def __call__(self,content=False,font=False,icon=True):
         if content: self.content(content)
         elif self.__code is None: self.content('')
@@ -67,9 +73,17 @@ class QRC:
         if font: return self.setFont(font)
         return self.background()
     
+    # 生成zip压缩包
     def zip(self,name,**data):
         stream = BytesIO()
         name = f'{name}.{self.__file_type}'
         self(**data).save(stream,'PNG')
         with ZipFile(f'{self.__file_name}.zip', 'a') as myzip:
             myzip.writestr(name,stream.getvalue())
+    
+    @staticmethod
+    def read(code):
+        data = decode(code,symbols=[ZBarSymbol.QRCODE])
+        if len(data)>1:
+            return len(data)
+        return data[0].data.decode("utf-8")
