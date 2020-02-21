@@ -1,5 +1,7 @@
 # QRcode
 
+- 模块导入
+
 ```py
-py w2.py
+from qrc import QRC
 ```
