@@ -7,7 +7,11 @@ from zipfile import ZipFile
 from io import BytesIO
 
 class QRC:
-    
+    '''
+    >>> qr = QRC()('content')
+    >>> print(QRC.read(qr))
+    content
+    '''
     def __init__(self,border=4,box_size=10,color=(255,255,255),font='msyh.ttc',
         font_size=1,icon=False,icon_size=0.4,zip_name='',file_type='png',
         error_correction=constants.ERROR_CORRECT_M):
@@ -81,9 +85,14 @@ class QRC:
         with ZipFile(f'{self.__file_name}.zip', 'a') as myzip:
             myzip.writestr(name,stream.getvalue())
     
+    # 读取二维码内容
     @staticmethod
     def read(code):
         data = decode(code,symbols=[ZBarSymbol.QRCODE])
         if len(data)>1:
             return len(data)
         return data[0].data.decode("utf-8")
+
+if __name__=='__main__':
+    import doctest
+    doctest.testmod()
