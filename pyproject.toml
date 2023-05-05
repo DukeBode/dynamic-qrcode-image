@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "dynamic_qrcode_image"
-version = "0.0.3"
+version = "0.0.4"
 authors = [
     { name="Duke Bode", email="DukeBode@hotmail.com"},
 ]
@@ -22,5 +22,5 @@ dependencies = [
     "pyzbar"
 ]
 [project.urls]
-"Homepage" = "https://github.com/DukeBode/qrcode"
-"Bug Tracker" = "https://github.com/DukeBode/qrcode/issues"
+"Homepage" = "hhttps://github.com/DukeBode/dynamic-qrcode-image"
+"Bug Tracker" = "https://github.com/DukeBode/dynamic-qrcode-image/issues"

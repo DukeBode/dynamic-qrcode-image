@@ -46,6 +46,3 @@ def hello(path=''):
     else:
         bg = qr(path)
     return tmp_qrcode(bg)
-
-if __name__=='__main__':
-    app.run()
