@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dynamic_qrcode_image"
+version = "0.0.1"
+authors = [
+    { name="Duke Bode", email="DukeBode@hotmail.com"},
+]
+description = "dynamic_qrcode_image"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Programming Language :: Python :: 3.11"
+]
+dependencies = [
+    "flask",
+    "pillow",
+    "qrcode",
+    "pyzbar"
+]
+[project.urls]
+"Homepage" = "https://github.com/DukeBode/qrcode"
+"Bug Tracker" = "https://github.com/DukeBode/qrcode/issues"
