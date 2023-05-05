@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "dynamic_qrcode_image"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
     { name="Duke Bode", email="DukeBode@hotmail.com"},
 ]
