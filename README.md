@@ -1,4 +1,4 @@
-# QRcode
+# dynamic-qrcode-image
 
 - 模块导入
 
