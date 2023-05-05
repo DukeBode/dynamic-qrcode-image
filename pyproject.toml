@@ -22,5 +22,5 @@ dependencies = [
     "pyzbar"
 ]
 [project.urls]
-"Homepage" = "hhttps://github.com/DukeBode/dynamic-qrcode-image"
+"Homepage" = "https://github.com/DukeBode/dynamic-qrcode-image"
 "Bug Tracker" = "https://github.com/DukeBode/dynamic-qrcode-image/issues"
