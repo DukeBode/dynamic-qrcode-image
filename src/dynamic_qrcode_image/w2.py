@@ -1,7 +1,7 @@
 from flask import Flask, escape, request,make_response,redirect,render_template
 from io import BytesIO
 from PIL import Image
-from qrc import QRC
+from .qrc import QRC
 ###############################
 # from flask_wtf import FlaskForm
 # from wtforms import StringField

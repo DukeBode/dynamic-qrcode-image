@@ -1,7 +1,7 @@
 ﻿# 生成带logo的二维码图片
 from openpyxl import load_workbook
 from time import strftime,localtime,time
-from qrc import QRC        
+from .qrc import QRC        
 import config
 
 # 根据配置生成文件名
