@@ -4,9 +4,9 @@ build-backend = "hatchling.build"
 
 [project]
 name = "dynamic_qrcode_image"
-version = "0.0.6"
+version = "0.0.7"
 authors = [
-    { name="Duke Bode", email="DukeBode@hotmail.com"},
+    { name="Duke Bode"},
 ]
 description = "dynamic_qrcode_image"
 readme = "README.md"
@@ -24,3 +24,6 @@ dependencies = [
 [project.urls]
 "Homepage" = "https://github.com/DukeBode/dynamic-qrcode-image"
 "Bug Tracker" = "https://github.com/DukeBode/dynamic-qrcode-image/issues"
+
+[project.scripts]
+qrcode-server = "dynamic_qrcode_image.w2:app.run"
